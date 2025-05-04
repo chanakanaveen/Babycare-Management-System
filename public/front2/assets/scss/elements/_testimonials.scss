@@ -1,0 +1,41 @@
+// testimonials style one
+.bg-testimonials-1{
+    background-image: url(../images/testimonials/01.jpg);
+}
+
+.rts-single-testimonials-one{
+    padding: 40px;
+    background: #FFFFFF;
+    @media #{$large-mobile} {
+        padding: 15px;
+    }
+    p.disc{
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 30px;
+        margin-top: 20px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #F1F1F1;
+        margin-bottom: 30px;
+    }
+    .awener-area{
+        display: flex;
+        align-items: center;
+        a{
+            margin-right: 12px;
+            display: block;
+        }
+        .main{
+            .title{
+                margin-bottom: 3px;
+                transition: .3s;
+                &:hover{
+                    color: var(--color-primary);
+                }
+            }
+            span{
+                color: var(--color-primary);
+            }
+        }
+    }
+}

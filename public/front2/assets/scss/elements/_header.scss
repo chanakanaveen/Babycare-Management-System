@@ -1,0 +1,135 @@
+
+// header style hear
+
+header.header-one{
+    background: #F2F2F2;
+    position: relative;
+    .header--one-main{
+        position: relative;
+        .logo-area{
+            padding: 40px 10px 40px 0;
+            display: block;
+        }
+        .header-right-area{
+            display: flex;
+            justify-content: flex-end;
+            .single-info-contact{
+                display: flex;
+                align-items: center;
+                i{
+                    width: 57px;
+                    height: 57px;
+                    border-radius: 50%;
+                    background: #fff;
+                    box-shadow: 0px 11px 22px rgba(0, 0, 0, 0.03);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 24px;
+                    color: var(--color-primary);
+                }
+                .inner-content{
+                    margin-left: 20px;
+                    span{
+                        display: block;
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 17px;
+                        color: #74787C;
+                    }
+                    .title{
+                        margin-bottom: 0;
+                        font-weight: 600;
+                        font-size: 18px;
+                        line-height: 22px;
+                        margin-top: 6px;
+                        transition: .3s;
+                        min-width: max-content;
+                        @media #{$smlg-device} {
+                            font-size: 15px;
+                        }
+                        &:hover{
+                            color: var(--color-primary);
+                        }
+                    }
+                }
+                &.map{
+                    margin-left: 40px;
+                    padding-left: 40px;
+                    border-left: 1px solid #D9D9D9;
+                    @media #{$smlg-device} {
+                        margin-left: 20px;
+                        padding-left: 20px;
+                        border-left: 1px solid #D9D9D9;
+                    }
+                }
+            }
+            
+            .btn-area-header{
+                display: flex;
+                align-items: center;
+                margin-left: 60px;
+                @media #{$smlg-device} {
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
+}
+
+.header-top-one{
+    @media #{$md-layout} {
+        display: none;
+    }
+    @media #{$sm-layout} {
+        display: none;
+    }
+}
+
+.logo-md-sm-device{
+    display: none;
+    @media #{$sm-layout} {
+        display: block;
+    }
+    .logo{
+        img{
+            max-width: 120px;
+        }
+    }
+}
+
+
+.header-nav{
+    .sub-dropdown{
+        position: relative;
+        &::after{
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            content: '\f054';
+            font-family:"Font Awesome 6 Pro" ;
+            color: #000;
+        }
+        .third-lvl{
+            border-radius: 0 0 10px 10px!important;
+            li{
+                min-width: max-content;
+            }
+        }
+        &:hover{
+            &::after{
+                color: var(--color-primary);
+            }
+        }
+    }
+}
+
+.sub-dropdown .submenu.third-lvl.base {
+    display: block !important;
+    border-radius: 0 0 10px 10px !important;
+}
+
+.current{
+    color: var(--color-primary);
+}

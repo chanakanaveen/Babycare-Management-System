@@ -1,0 +1,202 @@
+// banner style ehar
+.banner-one-swiper--wrapper-area{
+    position: relative;
+}
+.banner-main-wrapper-one{
+    .pre-title{
+        p{
+            font-size: 15px;
+            line-height: 20px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            font-weight: 600;
+            font-family: var(--font-primary);
+            margin-bottom: 25px;
+            span{
+                padding: 2px 5px;
+                display: inline-block;
+                background: var(--color-primary);
+                border-radius: 3px;
+            }
+        }
+    }
+    
+    .title{
+        color: #fff;
+        font-weight: 700;
+        font-size: 70px;
+        line-height: 82px;
+        margin-bottom: 30px;
+        @media #{$smlg-device} {
+            font-size: 45px;
+            line-height: 60px;
+        }
+        @media #{$large-mobile} {
+            font-size: 34px;
+            line-height: 44px;
+            margin-bottom: 15px;
+        }
+    }
+    p.disc{
+        margin-bottom: 30px;
+        margin-bottom: 40px;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 28px;
+        color: #FFFFFF;
+    }
+}
+
+.bg-breadcrumb{
+    background-image: url(../images/banner/breadcrumb/01.jpg);
+}
+
+
+.banner-one-swiper--wrapper-area{
+    .banner-main-wrapper-one{
+        .pre-title{
+            transition-delay: 0.5s;
+            opacity: 0;
+        }
+        .title{
+            transition-delay: 1s;
+            opacity: 0;
+        }
+        p.disc{
+            transition-delay: 1.5s;
+            opacity: 0;
+        }
+        .button-area{
+            transition-delay: 2s !important;
+            opacity: 0;
+        }
+    }
+    .banner-one-start{
+        position: relative;
+        z-index: 1;
+        img.shape{
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            height: 100%;
+            left: 0;
+        }
+    }
+    .swiper-slide.swiper-slide-active{
+        .banner-shape-area{
+            .shape-1{
+                top: 0;
+                left: 0;
+                animation: slideInLeft 0.8s linear;
+            }
+            .shape-2{
+                top: 0;
+                left: 0;
+                animation: slideInLeft 1s linear;
+            }
+            .shape-3{
+                top: 0;
+                left: 0;
+                animation: slideInLeft 1s linear;
+            }
+            .shape-4{
+                top: 0;
+                left: 0;
+                animation: slideInLeft 1.2s linear;
+            }
+        }
+        .banner-main-wrapper-one{
+            .pre-title{
+                transition-delay: 0.5s;
+                animation: slideInUp3 1s linear;
+                animation-delay: 0.5s;
+                display: block;
+                opacity: 1;            
+            }
+            .title{
+                animation: fadeInUp2 1s linear;
+                animation-delay: 1s;
+                opacity: 1;
+            }
+            p.disc{
+                animation: fadeInUp2 1.5s linear;
+                animation-delay: 1.5s;
+                opacity: 1;
+            }
+            .button-area{
+                animation: fadeInUp2 1.5s linear;
+                animation-delay: 2s !important;
+                opacity: 1;
+            }
+        }
+    }
+}
+
+// banner swiper one button next prev
+.banner-one-swiper--wrapper-area{
+    .swiper-button-next,
+    .swiper-button-prev{
+        background-image: none;
+        transition: .3s;
+        opacity: 0;
+        @media #{$large-mobile} {
+            display: none;
+        }
+        i{
+            font-size: 25px;
+            color: #fff;
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            border: 1px solid #dfe1ff69;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .3s;
+        }
+        &:hover{
+            i{
+                background: var(--color-primary);
+                border: 1px solid transparent;
+                transition: .3s;
+                height: 50px;
+                width: 50px;
+            }
+        }
+    }
+    .swiper-button-next{
+        right: 150px;
+        &:hover{
+            right: 140px;
+        }
+    }
+    .swiper-button-prev{
+        left: 120px;
+        &:hover{
+            left: 100px;
+        }
+    }
+    &:hover{
+        .swiper-button-next,
+        .swiper-button-prev{
+            opacity: 1;
+            i{
+                height: 70px;
+                width: 70px;
+                &:hover{
+                    height: 80px;
+                    width: 80px;
+                }
+            }
+        }
+    }
+}
+
+
+.bg_image-wp-1{
+    background-image: url(../images/bg/01.webp);
+}
+.bg_image-wp-2{
+    background-image: url(../images/bg/02.webp);
+}

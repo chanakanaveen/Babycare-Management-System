@@ -1,0 +1,94 @@
+// fun facts area start
+.fun-facts-area-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media #{$smlg-device} {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+    }
+    @media #{$small-mobile} {
+        justify-content: center;
+    }
+}
+.single-fun-facts{
+    display: flex;
+    align-items: center;
+    .icon{
+        width: 90px;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #F3F3F3;
+        border-radius: 50%;
+        margin-right: 20px;
+        @media #{$md-layout} {
+            width: 75px;
+            height: 75px;
+        }
+    }
+    .inner-content{
+        position: relative;       
+        &.bn{
+            &::after{
+                display: none;
+            }
+        }
+        &::after{
+            content: '';
+            position: absolute;
+            right: -100px;
+            height: 100%;
+            width: 1px;
+            background: #d1d1d1;
+            top: 0;
+            @media #{$laptop-device} {
+                display: none;
+            }
+            @media #{$smlg-device} {
+                display: none;
+            }
+        }
+        .title{
+            margin-bottom: 0;
+            position: relative;
+            display: inline-block;
+            .plus{
+                &::after{
+                    position: absolute;
+                    content: '+';
+                    right: -25px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    font-size: 36px;
+                    color: #000;
+                }
+            }
+        }
+        .title span.counter{
+            font-weight: 700;
+            font-size: 36px;
+            line-height: 48px;
+            margin-bottom: 0;
+            @media #{$md-layout} {
+                font-size: 27px;
+                line-height: 36px;
+                font-weight: 500;
+            }
+            @media #{$sm-layout} {
+                font-size: 27px;
+                line-height: 36px;
+                font-weight: 500;
+            }
+        }
+        span{
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 21px;
+            display: block;
+            font-family: var(--font-primary);
+        }
+    }
+}
