@@ -1,51 +1,77 @@
 # Babacare
 
-Babacare is a comprehensive platform designed to streamline and enhance your electronic and technical care needs. This project aims to provide users with an intuitive interface and robust features for managing services, users, and more.
+Babacare is a comprehensive platform designed to streamline and enhance your electronic and technical care needs. This project provides an intuitive interface and robust features for managing services, users, and more.
+
+---
 
 ## Features
 
-- User-friendly dashboard
-- Service management
-- Secure authentication
-- Responsive design
+- User-friendly dashboard  
+- Service management  
+- Secure authentication  
+- Responsive design  
 
-## Getting Started
-
-1. **Clone the repository:**
-   ```sh
-   git clone <repository-url>
-   cd babacare
-   ```
-
-2. **Install dependencies:**
-   ```sh
-   npm install
-   ```
-
-3. **Start the development server:**
-   ```sh
-   npm start
-   ```
-
-4. **Open your browser and navigate to:**
-   ```
-   http://localhost:3000
-   ```
-
-## Project Structure
-
-- `/src` - Main source code
-- `/public` - Static assets (images, icons, etc.)
-- `/public/images/users` - User images and homepage visuals
+---
 
 ## Home Page Preview
 
 ![Home Page](public/images/users/home%20page.png)
 
+---
+
+## Installation & Setup
+
+1. **Update Composer dependencies:**
+   ```sh
+   composer update
+   ```
+
+2. **Copy the example environment file and configure your environment variables:**
+   ```sh
+   cp .env.example .env
+   ```
+
+3. **Generate the application key:**
+   ```sh
+   php artisan key:generate
+   ```
+
+4. **Create a database:**
+   - Create a database named `babycare` using your preferred database tool.
+
+5. **Update your `.env` file:**
+   ```
+   DB_DATABASE='babycare'
+   ```
+
+6. **Import the database:**
+   - In the project directory, locate the `sql` folder.
+   - Use phpMyAdmin (or another tool) to import the SQL file into the `babycare` database.
+
+7. **Start the development server:**
+   ```sh
+   php artisan serve
+   ```
+
+8. **Open your browser and navigate to:**
+   ```
+   http://localhost:8000
+   ```
+
+---
+
+## Admin Credentials
+
+- **Username:** `admin@mail.com`
+- **Password:** `123456`
+
+---
+
+---
+
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
 
-## License
+---
 
-This project is licensed under the MIT License.
