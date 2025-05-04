@@ -1,6 +1,6 @@
 # Babacare
 
-Babacare is a comprehensive platform designed to streamline and enhance your electronic and technical care needs. This project provides an intuitive interface and robust features for managing services, users, and more.
+Babacare is a platform that enables healthcare providers to effectively monitor and manage baby health records while facilitating communication with parents. It features user authentication, baby profiles, growth monitoring, vaccination tracking, and secure communication channels.
 
 ---
 
