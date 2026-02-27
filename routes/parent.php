@@ -43,6 +43,7 @@ Route::prefix('parent')->name('parent.')->group(function () {
             Route::get('/{babyId}', [GrowthRecordController::class, 'index'])->name('index');
             Route::get('/{babyId}/{id}', [GrowthRecordController::class, 'show'])->name('show');
             Route::post('/', [GrowthRecordController::class, 'store'])->name('store');
+            Route::post('/{recordId}/predict', [GrowthRecordController::class, 'generatePrediction'])->name('generate-prediction');
         });
     });
 });

@@ -110,10 +110,18 @@
                 </h5>
 
                 @if(empty($prediction))
-                    <div class="alert alert-warning">
-                        <i class="fa fa-exclamation-triangle"></i>
-                        No AI prediction available for this record.
+                    <div id="noPredictionBox">
+                        <div class="alert alert-warning mb-3">
+                            <i class="fa fa-exclamation-triangle"></i>
+                            No AI prediction available for this record.
+                            This record was added before AI analysis was enabled.
+                        </div>
+                        <button id="generatePredBtn" class="btn btn-success">
+                            <i class="fa fa-robot"></i> Generate AI Prediction Now
+                        </button>
+                        <div id="generateError" class="alert alert-danger mt-3 d-none"></div>
                     </div>
+                    <div id="predictionDisplay" class="d-none"></div>
                 @else
 
                 {{-- Status Cards Row --}}
@@ -209,4 +217,71 @@
 
 </div>
 
+@endsection
+
+@section('myscript')
+<script>
+$(document).ready(function () {
+
+    $('#generatePredBtn').on('click', function () {
+        var btn = $(this);
+        btn.prop('disabled', true).html('<i class="fa fa-spinner fa-spin"></i> Generating...');
+        $('#generateError').addClass('d-none');
+
+        $.ajax({
+            url: "{{ route('parent.growth-record.generate-prediction', $record->record_id) }}",
+            type: "POST",
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            success: function (response) {
+                if (response.status === 1) {
+                    var pred = response.prediction;
+
+                    var badgeColor = 'secondary';
+                    var bmiLower = (pred.bmi_status || '').toLowerCase();
+                    if (bmiLower === 'normal' || bmiLower === 'healthy') badgeColor = 'success';
+                    else if (bmiLower === 'underweight') badgeColor = 'warning';
+                    else if (bmiLower === 'overweight' || bmiLower === 'obese') badgeColor = 'danger';
+
+                    var recHtml = '';
+                    if (pred.recommendations && pred.recommendations.length) {
+                        pred.recommendations.forEach(function(r) { recHtml += '<li class="mb-2"><i class="fa fa-angle-right text-success"></i> ' + r + '</li>'; });
+                    } else { recHtml = '<li class="text-muted">None</li>'; }
+
+                    var concHtml = '';
+                    if (pred.concerns && pred.concerns.length) {
+                        pred.concerns.forEach(function(c) { concHtml += '<li class="mb-2"><i class="fa fa-angle-right text-danger"></i> ' + c + '</li>'; });
+                    } else { concHtml = '<li class="text-success"><i class="fa fa-check"></i> No concerns identified.</li>'; }
+
+                    var milestoneHtml = pred.milestone_expectations
+                        ? '<div class="mt-3"><div class="card border-0 bg-light p-3"><h6 class="text-primary mb-2"><i class="fa fa-star"></i> Milestone Expectations</h6><p class="mb-0 text-muted">' + pred.milestone_expectations + '</p></div></div>'
+                        : '';
+
+                    var html = '<div class="row mb-4">'
+                        + '<div class="col-md-4"><div class="card text-center border-' + badgeColor + ' p-3"><small class="text-muted">BMI Status</small><h4 class="text-' + badgeColor + ' mb-0 mt-1">' + (pred.bmi_status || '—') + '</h4></div></div>'
+                        + '<div class="col-md-4"><div class="card text-center border-primary p-3"><small class="text-muted">Growth Status</small><h5 class="text-primary mb-0 mt-1">' + (pred.growth_status || '—') + '</h5></div></div>'
+                        + '<div class="col-md-4"><div class="card text-center border-info p-3"><small class="text-muted">Next Checkup Weight</small><h5 class="text-info mb-0 mt-1">' + (pred.next_checkup_weight ? pred.next_checkup_weight + ' kg' : '—') + '</h5></div></div>'
+                        + '</div>'
+                        + '<div class="row">'
+                        + '<div class="col-md-6 mb-3"><div class="card border-0 bg-light p-3 h-100"><h6 class="text-success mb-3"><i class="fa fa-check-circle"></i> Recommendations</h6><ul class="list-unstyled mb-0">' + recHtml + '</ul></div></div>'
+                        + '<div class="col-md-6 mb-3"><div class="card border-0 bg-light p-3 h-100"><h6 class="text-danger mb-3"><i class="fa fa-exclamation-circle"></i> Concerns</h6><ul class="list-unstyled mb-0">' + concHtml + '</ul></div></div>'
+                        + '</div>'
+                        + milestoneHtml;
+
+                    $('#noPredictionBox').addClass('d-none');
+                    $('#predictionDisplay').removeClass('d-none').html(html);
+                } else {
+                    $('#generateError').removeClass('d-none').text(response.msg || 'Failed to generate prediction.');
+                    btn.prop('disabled', false).html('<i class="fa fa-robot"></i> Generate AI Prediction Now');
+                }
+            },
+            error: function (xhr) {
+                var msg = 'An unexpected error occurred.';
+                if (xhr.responseJSON && xhr.responseJSON.msg) msg = xhr.responseJSON.msg;
+                $('#generateError').removeClass('d-none').text(msg);
+                btn.prop('disabled', false).html('<i class="fa fa-robot"></i> Generate AI Prediction Now');
+            }
+        });
+    });
+});
+</script>
 @endsection

@@ -226,4 +226,56 @@ class GrowthRecordController extends Controller
             return redirect()->back()->with('fail', 'Error: ' . $e->getMessage());
         }
     }
+
+    /**
+     * Generate (or regenerate) an AI prediction for an existing growth record.
+     */
+    public function generatePrediction(Request $request, $recordId)
+    {
+        try {
+            $parentId = Auth::guard('parent')->id();
+
+            $record = WeightRecord::where('record_id', $recordId)->firstOrFail();
+
+            $baby = Baby::where('baby_id', $record->baby_id)
+                        ->where('parent_id', $parentId)
+                        ->first();
+
+            if (!$baby) {
+                return response()->json(['status' => 0, 'msg' => 'Unauthorized.'], 403);
+            }
+
+            $historicalRecords = WeightRecord::where('baby_id', $record->baby_id)
+                ->where('record_id', '!=', $record->record_id)
+                ->orderBy('record_date', 'asc')
+                ->get()
+                ->map(fn($r) => [
+                    'weight'     => $r->weight,
+                    'height'     => $r->height,
+                    'age_months' => $r->age_months,
+                    'date'       => $r->record_date,
+                ])->toArray();
+
+            $prediction = $this->aiService->predict([
+                'weight'             => $record->weight,
+                'height'             => $record->height,
+                'age_months'         => $record->age_months,
+                'milestones'         => $record->milestones,
+                'gender'             => $baby->gender,
+                'head_circumference' => $record->head_circumference,
+                'historical_records' => $historicalRecords,
+            ]);
+
+            $record->ai_prediction = $prediction;
+            $record->save();
+
+            return response()->json([
+                'status'     => 1,
+                'msg'        => 'AI prediction generated successfully.',
+                'prediction' => $prediction,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 0, 'msg' => 'Error: ' . $e->getMessage()]);
+        }
+    }
 }
