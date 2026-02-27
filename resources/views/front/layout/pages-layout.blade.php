@@ -60,16 +60,16 @@
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Register</a>
                                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                                    <a href="{{ route('seller.register') }}" class="dropdown-item">Midwife</a>
-                                    <a href="{{ route('client.register') }}" class="dropdown-item">Parent</a>
+                                    <a href="{{ route('midwife.register') }}" class="dropdown-item">Midwife</a>
+                                    <a href="{{ route('parent.register') }}" class="dropdown-item">Parent</a>
                                 </div>
                             </div>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Login</a>
                                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                                    <a href="{{ route('admin.login') }}" class="dropdown-item">MOH</a>
-                                    <a href="{{ route('seller.login') }}" class="dropdown-item">Midwife</a>
-                                    <a href="{{ route('client.login') }}" class="dropdown-item">Parent</a>
+                                    <a href="{{ route('moh.login') }}" class="dropdown-item">MOH</a>
+                                    <a href="{{ route('midwife.login') }}" class="dropdown-item">Midwife</a>
+                                    <a href="{{ route('parent.login') }}" class="dropdown-item">Parent</a>
                                 </div>
                             </div>
 

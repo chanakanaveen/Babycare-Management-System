@@ -14,10 +14,15 @@ class AddFieldsToSellerTable extends Migration
     public function up()
     {
         Schema::table('sellers', function (Blueprint $table) {
-            $table->text('professional_credentials')->nullable();
-            $table->unsignedBigInteger('division_id')->nullable();
-        
-            $table->enum('account_status', ['active', 'inactive', 'suspended'])->default('active');
+            if (!Schema::hasColumn('sellers', 'professional_credentials')) {
+                $table->text('professional_credentials')->nullable();
+            }
+            if (!Schema::hasColumn('sellers', 'division_id')) {
+                $table->unsignedBigInteger('division_id')->nullable();
+            }
+            if (!Schema::hasColumn('sellers', 'account_status')) {
+                $table->enum('account_status', ['active', 'inactive', 'suspended'])->default('active');
+            }
         });
     }
 

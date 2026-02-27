@@ -83,7 +83,7 @@
 <div class="modal fade" id="addBabyModal" tabindex="-1" aria-labelledby="addBabyModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="addBabyForm" method="POST" action="{{ route('seller.baby-store') }}">
+            <form id="addBabyForm" method="POST" action="{{ route('midwife.baby-store') }}">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="addBabyModalLabel">Add Baby Details</h5>
@@ -155,7 +155,7 @@
 <div class="modal fade" id="updateBabyModal" tabindex="-1" aria-labelledby="updateBabyModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="updateBabyForm" method="POST" action="{{ route('seller.weight-record-store') }}">
+            <form id="updateBabyForm" method="POST" action="{{ route('midwife.weight-record-store') }}">
                 @csrf
                 <input type="hidden" id="baby_id" name="baby_id"> <!-- Hidden field for baby ID -->
                 {{-- <input type='hidden' id='midwife_id' name='midwife_id' value='{{ $midwifedetails->id }}'> --}}

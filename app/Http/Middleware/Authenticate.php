@@ -14,24 +14,20 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        // if (! $request->expectsJson()) {
-        //     return route('login');
-        // }
-
         if(! $request->expectsJson()){
-            if($request->routeIs('admin.*')){
+            if($request->routeIs('moh.*')){
                 session()->flash('fail','You must be logged in to access this page');
-                return route('admin.login');
+                return route('moh.login');
             }
 
-            if( $request->routeIs('seller.*') ){
+            if( $request->routeIs('midwife.*') ){
                 session()->flash('fail','You must login first');
-                return route('seller.login');
+                return route('midwife.login');
             }
 
-            if( $request->routeIs('client.*') ){
+            if( $request->routeIs('parent.*') ){
                 session()->flash('fail','You must login first');
-                return route('client.login');
+                return route('parent.login');
             }
         }
     }

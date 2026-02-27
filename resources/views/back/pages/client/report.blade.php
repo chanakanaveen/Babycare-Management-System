@@ -61,7 +61,7 @@ $(document).ready(function(){
         var selectid = $('#baby').val();
         console.log(selectid);
         $.ajax({
-            url:'{{ route('client.report-data') }}',
+            url:'{{ route('parent.report-data') }}',
             method:"POST",
             data:{"selectid":selectid},
             headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },

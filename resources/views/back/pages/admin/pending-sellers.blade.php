@@ -340,7 +340,7 @@ $(document).ready(function(){
         console.log("verify confirm");
         console.log(selectid);
         $.ajax({
-            url:'{{ route('admin.seller-verify') }}',
+            url:'{{ route('moh.seller-verify') }}',
             method:"POST",
             data:{"seid":selectid},
             headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
@@ -366,7 +366,7 @@ $(document).ready(function(){
     $("#unverifyconfirm").click(function(){
         console.log("unverify confirm");
         $.ajax({
-            url:'{{ route('admin.seller-unverify') }}',
+            url:'{{ route('moh.seller-unverify') }}',
             method:"POST",
             data:{"seid":selectid},
             headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },

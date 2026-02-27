@@ -1,5 +1,5 @@
 <div>
-        @if (Auth::guard('admin')->check())
+        @if (Auth::guard('moh')->check())
             <div class="user-info-dropdown">
                 <div class="dropdown">
                     <a
@@ -16,20 +16,20 @@
                     <div
                         class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
                     >
-                        <a class="dropdown-item" href="{{ route('admin.profile') }}"
+                        <a class="dropdown-item" href="{{ route('moh.profile') }}"
                             ><i class="dw dw-user1"></i> Profile</a
                         >
 
-                        <a class="dropdown-item" href="{{ route('admin.logout_handler') }}" onclick="event.preventDefault(); document.getElementById('adminLogoutForm').submit();"
+                        <a class="dropdown-item" href="{{ route('moh.logout_handler') }}" onclick="event.preventDefault(); document.getElementById('adminLogoutForm').submit();"
                             ><i class="dw dw-logout"></i> Log Out</a
                         >
-                        <form id="adminLogoutForm" action="{{ route('admin.logout_handler') }}" method="POST" style="display: none;">
+                        <form id="adminLogoutForm" action="{{ route('moh.logout_handler') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
                     </div>
                 </div>
             </div>
-        @elseif( Auth::guard('seller')->check())
+        @elseif( Auth::guard('midwife')->check())
         <div class="user-info-dropdown">
             <div class="dropdown">
                 <a
@@ -46,17 +46,17 @@
                 <div
                     class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
                 >
-                    <a class="dropdown-item" href="{{ route('seller.profile') }}"
+                    <a class="dropdown-item" href="{{ route('midwife.profile') }}"
                         ><i class="dw dw-user1"></i> Profile</a
                     >
-                    <a class="dropdown-item" href="{{ route('seller.logout') }}" onclick="event.preventDefault();document.getElementById('sellerLogoutForm').submit();"
+                    <a class="dropdown-item" href="{{ route('midwife.logout') }}" onclick="event.preventDefault();document.getElementById('sellerLogoutForm').submit();"
                         ><i class="dw dw-logout"></i> Log Out</a
                     >
-                    <form action="{{ route('seller.logout') }}" id="sellerLogoutForm" method="POST">@csrf</form>
+                    <form action="{{ route('midwife.logout') }}" id="sellerLogoutForm" method="POST">@csrf</form>
                 </div>
             </div>
         </div>
-        @elseif( Auth::guard('client')->check())
+        @elseif( Auth::guard('parent')->check())
         <div class="user-info-dropdown">
             <div class="dropdown">
                 <a
@@ -73,14 +73,14 @@
                 <div
                     class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
                 >
-                    <a class="dropdown-item" href="{{ route('client.profile') }}"
+                    <a class="dropdown-item" href="{{ route('parent.profile') }}"
                         ><i class="dw dw-user1"></i> Profile</a
                     >
                    
-                    <a class="dropdown-item" href="{{ route('client.logout') }}" onclick="event.preventDefault();document.getElementById('clientLogoutForm').submit();"
+                    <a class="dropdown-item" href="{{ route('parent.logout') }}" onclick="event.preventDefault();document.getElementById('clientLogoutForm').submit();"
                         ><i class="dw dw-logout"></i> Log Out</a
                     >
-                    <form action="{{ route('client.logout') }}" id="clientLogoutForm" method="POST">@csrf</form>
+                    <form action="{{ route('parent.logout') }}" id="clientLogoutForm" method="POST">@csrf</form>
                 </div>
             </div>
         </div>

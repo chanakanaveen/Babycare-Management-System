@@ -60,17 +60,17 @@
 				</div>
 				<div class="login-menu">
 					<ul>
-                        @if (!Route::is('admin.*'))
-                            @if (Route::is('seller.login'))
-                                <li><a href="{{ route('seller.register') }}">Register</a></li>
-                            @elseif (Route::is('seller.register'))
-                                <li><a href="{{ route('seller.login') }}">Login</a></li>
+                        @if (!Route::is('moh.*'))
+                            @if (Route::is('midwife.login'))
+                                <li><a href="{{ route('midwife.register') }}">Register</a></li>
+                            @elseif (Route::is('midwife.register'))
+                                <li><a href="{{ route('midwife.login') }}">Login</a></li>
                             @endif
 
-                            @if (Route::is('client.login'))
-                                <li><a href="{{ route('client.register') }}">Register</a></li>
-                            @elseif (Route::is('client.register'))
-                                <li><a href="{{ route('client.login') }}">Login</a></li>
+                            @if (Route::is('parent.login'))
+                                <li><a href="{{ route('parent.register') }}">Register</a></li>
+                            @elseif (Route::is('parent.register'))
+                                <li><a href="{{ route('parent.login') }}">Login</a></li>
                             @endif
                         @endif
 					</ul>
@@ -83,11 +83,11 @@
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-md-6 col-lg-7">
-                        @if (Route::is('admin.*'))
+                        @if (Route::is('moh.*'))
                             <img src="/back/vendors/images/moh-login.jpg" alt="" />
-                        @elseif (Route::is('seller.*'))
+                        @elseif (Route::is('midwife.*'))
                             <img src="/back/vendors/images/midwife-login.jpg" alt="" />
-                        @elseif (Route::is('client.*'))
+                        @elseif (Route::is('parent.*'))
                             <img src="/back/vendors/images/parents-login.jpg" alt="" />
                         @endif
 

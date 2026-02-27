@@ -113,16 +113,16 @@
                                                 <li class="has-dropdown">
                                                     <a class="nav-link" href="#">REGISTER</a>
                                                     <ul class="submenu">
-                                                        <li><a href="{{ route('client.register') }}">Client</a></li>
-                                                        <li><a href="{{ route('seller.register') }}">Selelr</a></li>
+                                                        <li><a href="{{ route('parent.register') }}">Client</a></li>
+                                                        <li><a href="{{ route('midwife.register') }}">Selelr</a></li>
                                                     </ul>
                                                 </li>
                                                 <li class="has-dropdown">
                                                     <a class="nav-link" href="#">LOGIN</a>
                                                     <ul class="submenu">
-                                                        <li><a href="{{ route('admin.login') }}">Admin</a></li>
-                                                        <li><a href="{{ route('client.login') }}">Client</a></li>
-                                                        <li><a href="{{ route('seller.login') }}">Selller</a></li>
+                                                        <li><a href="{{ route('moh.login') }}">Admin</a></li>
+                                                        <li><a href="{{ route('parent.login') }}">Client</a></li>
+                                                        <li><a href="{{ route('midwife.login') }}">Selller</a></li>
                                                     </ul>
                                                 </li>
 

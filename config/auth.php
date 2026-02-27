@@ -20,21 +20,21 @@ return [
         'passwords' => 'users',
     ],
 
-    'admin' => [
+    'moh' => [
         'driver' => 'eloquent',
-        'model' => App\Models\Admin::class,
+        'model' => App\Models\Moh::class,
     ],
 
 
-    'client' => [
+    'parent' => [
         'driver' => 'eloquent',
-        'model' => App\Models\Client::class,
+        'model' => App\Models\ParentUser::class,
     ],
 
 
-    'seller' => [
+    'midwife' => [
         'driver' => 'eloquent',
-        'model' => App\Models\Seller::class,
+        'model' => App\Models\Midwife::class,
     ],
 
     /*
@@ -66,19 +66,19 @@ return [
             'hash' => false,
         ],
 
-        'admin' => [
+        'moh' => [
             'driver' => 'session',
-            'provider' => 'admins',
+            'provider' => 'mohs',
         ],
 
-        'client' => [
+        'parent' => [
             'driver' => 'session',
-            'provider' => 'clients',
+            'provider' => 'parents',
         ],
 
-        'seller' => [
+        'midwife' => [
             'driver' => 'session',
-            'provider' => 'sellers',
+            'provider' => 'midwives',
         ],
     ],
 
@@ -105,19 +105,19 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        'admins' => [
+        'mohs' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
+            'model' => App\Models\Moh::class,
         ],
 
-        'clients' => [
+        'parents' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Client::class,
+            'model' => App\Models\ParentUser::class,
         ],
 
-        'sellers' => [
+        'midwives' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Seller::class,
+            'model' => App\Models\Midwife::class,
         ],
     ],
 
@@ -144,19 +144,19 @@ return [
             'throttle' => 60,
         ],
 
-        'admins' => [
+        'mohs' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
+            'model' => App\Models\Moh::class,
         ],
 
-        'clients' => [
+        'parents' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Client::class,
+            'model' => App\Models\ParentUser::class,
         ],
 
-        'sellers' => [
+        'midwives' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Seller::class,
+            'model' => App\Models\Midwife::class,
         ],
     ],
 

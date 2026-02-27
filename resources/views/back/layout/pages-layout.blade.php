@@ -451,44 +451,44 @@
 				<div class="sidebar-menu">
 					<ul id="accordion-menu">
 
-                        @if (Route::is('admin.*') )
+                        @if (Route::is('moh.*') )
                             <li class="dropdown">
-                                <a href="{{ route('admin.home') }}" class="dropdown-toggle no-arrow {{ route::is('admin.home')? 'active' : '' }}">
+                                <a href="{{ route('moh.home') }}" class="dropdown-toggle no-arrow {{ route::is('moh.home')? 'active' : '' }}">
                                     <span class="micon fa fa-home"></span
                                     ><span class="mtext">Home</span>
                                 </a>
                             </li>
 
 							<li class="dropdown">
-                                <a href="{{ route('admin.pending-seller') }}" class="dropdown-toggle no-arrow {{ route::is('admin.pending-seller')? 'active' : '' }}">
+                                <a href="{{ route('moh.pending-midwives') }}" class="dropdown-toggle no-arrow {{ route::is('moh.pending-midwives')? 'active' : '' }}">
                                     <span class="micon fa fa-user-secret"></span
                                     ><span class="mtext">Midwife Details</span>
                                 </a>
                             </li>
 
                             <li class="dropdown">
-                                <a href="{{ route('admin.sellers') }}" class="dropdown-toggle no-arrow {{ route::is('admin.sellers')? 'active' : '' }}">
+                                <a href="{{ route('moh.parents') }}" class="dropdown-toggle no-arrow {{ route::is('moh.parents')? 'active' : '' }}">
                                     <span class="micon bi bi-people-fill"></span
                                     ><span class="mtext">Parents Details</span>
                                 </a>
                             </li>
 
                             <li class="dropdown">
-                                <a href="{{ route('admin.users') }}" class="dropdown-toggle no-arrow {{ route::is('admin.users')? 'active' : '' }}">
+                                <a href="{{ route('moh.users') }}" class="dropdown-toggle no-arrow {{ route::is('moh.users')? 'active' : '' }}">
                                     <span class="micon bi bi-people-fill"></span
                                     ><span class="mtext">Babys Details</span>
                                 </a>
                             </li>
 
                             <li class="dropdown">
-                                <a href="{{ route('admin.vaccines') }}" class="dropdown-toggle no-arrow {{ route::is('admin.vaccines')? 'active' : '' }}">
+                                <a href="{{ route('moh.vaccines') }}" class="dropdown-toggle no-arrow {{ route::is('moh.vaccines')? 'active' : '' }}">
                                     <span class="micon bi bi-people-fill"></span
                                     ><span class="mtext">Vaccinations</span>
                                 </a>
                             </li>
 
                             <li class="dropdown">
-                                <a href="{{ route('admin.notice') }}" class="dropdown-toggle no-arrow {{ route::is('admin.noties')? 'active' : '' }}">
+                                <a href="{{ route('moh.notice') }}" class="dropdown-toggle no-arrow {{ route::is('moh.noties')? 'active' : '' }}">
                                     <span class="micon bi bi-people-fill"></span
                                     ><span class="mtext">Notice</span>
                                 </a>
@@ -496,29 +496,29 @@
 
 
                             <li>
-                                <a href="{{ route('admin.profile') }}" class="dropdown-toggle no-arrow {{ route::is('admin.profile')? 'active' : '' }}">
+                                <a href="{{ route('moh.profile') }}" class="dropdown-toggle no-arrow {{ route::is('moh.profile')? 'active' : '' }}">
                                     <span class="micon fa fa-user"></span
                                     ><span class="mtext">Profile</span>
                                 </a>
                             </li>
 
-                        @elseif (Route::is('seller.*') )
+                        @elseif (Route::is('midwife.*') )
                         <li>
-							<a href="{{ route('seller.home') }}" class="dropdown-toggle no-arrow {{ Route::is('seller.home') ? 'active' : '' }}">
+							<a href="{{ route('midwife.home') }}" class="dropdown-toggle no-arrow {{ Route::is('midwife.home') ? 'active' : '' }}">
 								<span class="micon fa fa-home"></span
 								><span class="mtext">Home</span>
 							</a>
 						</li>
 
                         <li>
-							<a href="{{ route('seller.parent') }}" class="dropdown-toggle no-arrow {{ Route::is('seller.parent') ? 'active' : '' }}">
+							<a href="{{ route('midwife.parent') }}" class="dropdown-toggle no-arrow {{ Route::is('midwife.parent') ? 'active' : '' }}">
 								<span class="micon bi bi-receipt-cutoff"></span
 								><span class="mtext">Parents</span>
 							</a>
 						</li>
 
                         <li>
-							<a href="{{ route('seller.baby') }}" class="dropdown-toggle no-arrow {{ Route::is('seller.baby') ? 'active' : '' }}">
+							<a href="{{ route('midwife.baby') }}" class="dropdown-toggle no-arrow {{ Route::is('midwife.baby') ? 'active' : '' }}">
 								<span class="micon bi bi-receipt-cutoff"></span
 								><span class="mtext">Babys</span>
 							</a>
@@ -526,21 +526,21 @@
 
 
                         <li>
-							<a href="{{ route('seller.notice') }}" class="dropdown-toggle no-arrow {{ Route::is('seller.notice') ? 'active' : '' }}">
+							<a href="{{ route('midwife.notice') }}" class="dropdown-toggle no-arrow {{ Route::is('midwife.notice') ? 'active' : '' }}">
 								<span class="micon bi bi-receipt-cutoff"></span
 								><span class="mtext">Notices</span>
 							</a>
 						</li>
 
                         <li>
-							<a href="{{ route('seller.report') }}" class="dropdown-toggle no-arrow {{ Route::is('seller.report') ? 'active' : '' }}">
+							<a href="{{ route('midwife.report') }}" class="dropdown-toggle no-arrow {{ Route::is('midwife.report') ? 'active' : '' }}">
 								<span class="micon bi bi-receipt-cutoff"></span
 								><span class="mtext"> Weight Report</span>
 							</a>
 						</li>
 
                         <li>
-							<a href="{{ route('seller.height-report') }}" class="dropdown-toggle no-arrow {{ Route::is('seller.height-report') ? 'active' : '' }}">
+							<a href="{{ route('midwife.height-report') }}" class="dropdown-toggle no-arrow {{ Route::is('midwife.height-report') ? 'active' : '' }}">
 								<span class="micon bi bi-receipt-cutoff"></span
 								><span class="mtext"> Height Report</span>
 							</a>
@@ -549,9 +549,9 @@
 
 						<li>
 							<a
-								href="{{ route('seller.profile') }}"
+								href="{{ route('midwife.profile') }}"
 
-								class="dropdown-toggle no-arrow {{ Route::is('seller.profile') ? 'active' : '' }}"
+								class="dropdown-toggle no-arrow {{ Route::is('midwife.profile') ? 'active' : '' }}"
 							>
 								<span class="micon fa fa-user"></span>
 								<span class="mtext"
@@ -560,19 +560,26 @@
 							</a>
 						</li>
 
-                        @elseif (Route::is('client.*') )
+                        @elseif (Route::is('parent.*') )
 
                             {{-- <li>
-                                <a href="{{ route('client.home') }}" class="dropdown-toggle no-arrow {{ Route::is('client.home') ? 'active' : '' }}">
+                                <a href="{{ route('parent.home') }}" class="dropdown-toggle no-arrow {{ Route::is('parent.home') ? 'active' : '' }}">
                                     <span class="micon fa fa-home"></span
                                     ><span class="mtext">Home</span>
                                 </a>
                             </li> --}}
 
                             <li>
-                                <a href="{{ route('client.baby') }}" class="dropdown-toggle no-arrow {{ Route::is('client.baby') ? 'active' : '' }}">
+                                <a href="{{ route('parent.baby') }}" class="dropdown-toggle no-arrow {{ Route::is('parent.baby') ? 'active' : '' }}">
                                     <span class="micon bi bi-receipt-cutoff"></span
                                     ><span class="mtext">Babys</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('parent.baby') }}" class="dropdown-toggle no-arrow {{ Route::is('parent.growth-record.*') ? 'active' : '' }}">
+                                    <span class="micon fa fa-robot"></span
+                                    ><span class="mtext">Growth Records</span>
                                 </a>
                             </li>
 
@@ -580,21 +587,21 @@
 
 
                             <li>
-                                <a href="{{ route('client.report') }}" class="dropdown-toggle no-arrow {{ Route::is('client.report') ? 'active' : '' }}">
+                                <a href="{{ route('parent.report') }}" class="dropdown-toggle no-arrow {{ Route::is('parent.report') ? 'active' : '' }}">
                                     <span class="micon bi bi-receipt-cutoff"></span
                                     ><span class="mtext"> Weight Report</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="{{ route('client.height-report') }}" class="dropdown-toggle no-arrow {{ Route::is('client.height-report') ? 'active' : '' }}">
+                                <a href="{{ route('parent.height-report') }}" class="dropdown-toggle no-arrow {{ Route::is('parent.height-report') ? 'active' : '' }}">
                                     <span class="micon bi bi-receipt-cutoff"></span
                                     ><span class="mtext"> Height Report</span>
                                 </a>
                             </li>
 
                             {{-- <li>
-                                <a href="{{ route('client.job') }}" class="dropdown-toggle no-arrow {{ Route::is('client.job') ? 'active' : '' }}">
+                                <a href="{{ route('parent.job') }}" class="dropdown-toggle no-arrow {{ Route::is('parent.job') ? 'active' : '' }}">
                                     <span class="micon bi bi-receipt-cutoff"></span
                                     ><span class="mtext">Notices</span>
                                 </a>
@@ -602,9 +609,9 @@
 
                             <li>
                                 <a
-                                    href="{{ route('client.profile') }}"
+                                    href="{{ route('parent.profile') }}"
 
-                                    class="dropdown-toggle no-arrow {{ Route::is('client.profile') ? 'active' : '' }}"
+                                    class="dropdown-toggle no-arrow {{ Route::is('parent.profile') ? 'active' : '' }}"
                                 >
                                     <span class="micon fa fa-user"></span>
                                     <span class="mtext"

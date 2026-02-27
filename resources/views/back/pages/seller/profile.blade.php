@@ -11,7 +11,7 @@
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="{{ route('seller.home') }}">Home</a>
+                        <a href="{{ route('midwife.home') }}">Home</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
                         Profile
@@ -56,7 +56,7 @@
                         <!-- Timeline Tab start -->
                         <div class="tab-pane fade show active " id="personal_details" role="tabpanel">
                             <div class="pd-20">
-                                <form action="{{ route('seller.update_profile') }}" method="POST">
+                                <form action="{{ route('midwife.update_profile') }}" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-4">
@@ -200,7 +200,7 @@
                         <!-- Tasks Tab start -->
                         <div class="tab-pane fade " id="update_password" role="tabpanel">
                             <div class="pd-20 profile-task-wrap">
-                                <form action="{{ route('seller.change-password') }}" method="POST">
+                                <form action="{{ route('midwife.change-password') }}" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-4">

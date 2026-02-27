@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Admin;
+use App\Models\Moh;
 use Illuminate\Support\Facades\Hash;
 
 class AdminProfileTabs extends Component
@@ -18,12 +18,12 @@ class AdminProfileTabs extends Component
     public function selectTab($tab){
         $this->tab = $tab;
     }
-    
+
     public function mount(){
         $this->tab = request()->tab ? request()->tab : $this->tabname;
 
-        if( Auth::guard('admin')->check() ){
-            $admin = Admin::findOrFail(auth()->id());
+        if( Auth::guard('moh')->check() ){
+            $admin = Moh::findOrFail(auth()->id());
             $this->admin_id = $admin->id;
             $this->name = $admin->name;
             $this->email = $admin->email;

@@ -11,7 +11,7 @@
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="{{ route('admin.home') }}">Home</a>
+                        <a href="{{ route('moh.home') }}">Home</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
                         Profile
@@ -56,7 +56,7 @@
                         <!-- Timeline Tab start -->
                         <div class="tab-pane fade show active " id="personal_details" role="tabpanel">
                             <div class="pd-20">
-                                <form action="{{ route('admin.update_profile') }}" method="POST">
+                                <form action="{{ route('moh.update_profile') }}" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-4">
@@ -98,7 +98,7 @@
                         <!-- Tasks Tab start -->
                         <div class="tab-pane fade " id="update_password" role="tabpanel">
                             <div class="pd-20 profile-task-wrap">
-                                <form action="{{ route('admin.change-password') }}" method="POST">
+                                <form action="{{ route('moh.change-password') }}" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-4">

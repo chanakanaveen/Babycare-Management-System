@@ -1,9 +1,9 @@
 <?php
 
 class  constGuards{
-    const ADMIN = 'admin';
-    const CLIENT = 'client';
-    const SELLER = 'seller';
+    const MOH = 'moh';
+    const PARENT = 'parent';
+    const MIDWIFE = 'midwife';
 }
 
 class  constDefaults{

@@ -113,16 +113,16 @@
                                                 <li class="has-dropdown">
                                                     <a class="nav-link" href="#">REGISTER</a>
                                                     <ul class="submenu">
-                                                        <li><a href="{{ route('client.register') }}">Client</a></li>
-                                                        <li><a href="{{ route('seller.register') }}">Seller</a></li>
+                                                        <li><a href="{{ route('parent.register') }}">Client</a></li>
+                                                        <li><a href="{{ route('midwife.register') }}">Seller</a></li>
                                                     </ul>
                                                 </li>
                                                 <li class="has-dropdown">
                                                     <a class="nav-link" href="#">LOGIN</a>
                                                     <ul class="submenu">
-                                                        <li><a href="{{ route('admin.login') }}">Admin</a></li>
-                                                        <li><a href="{{ route('client.login') }}">Client</a></li>
-                                                        <li><a href="{{ route('seller.login') }}">Seller</a></li>
+                                                        <li><a href="{{ route('moh.login') }}">Admin</a></li>
+                                                        <li><a href="{{ route('parent.login') }}">Client</a></li>
+                                                        <li><a href="{{ route('midwife.login') }}">Seller</a></li>
                                                     </ul>
                                                 </li>
 
@@ -188,9 +188,9 @@
                                             New way to find people to do your jobs. If you are one of those thousands of people who struggle to find people to do Jobs or struggle to find jobs, this is for you.
                                         </p>
                                         <div class="button-area">
-                                            <a  type="button" href="{{ route('seller.register') }}" class="rts-btn btn-primary with-arrow">I want to work</a>
+                                            <a  type="button" href="{{ route('midwife.register') }}" class="rts-btn btn-primary with-arrow">I want to work</a>
                                             &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a type="button" href="{{ route('client.register') }}" class="rts-btn btn-primary with-arrow">I want to hire</a>
+                                            <a type="button" href="{{ route('parent.register') }}" class="rts-btn btn-primary with-arrow">I want to hire</a>
                                         </div>
 
                                     </div>
@@ -226,9 +226,9 @@
                                             New way to find people to do your jobs. If you are one of those thousands of people who struggle to find people to do Jobs or struggle to find jobs, this is for you.
                                         </p>
                                         <div class="button-area">
-                                            <a  type="button" href="{{ route('seller.register') }}" class="rts-btn btn-primary with-arrow">I want to work</a>
+                                            <a  type="button" href="{{ route('midwife.register') }}" class="rts-btn btn-primary with-arrow">I want to work</a>
                                             &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a type="button" href="{{ route('client.register') }}" class="rts-btn btn-primary with-arrow">I want to hire</a>
+                                            <a type="button" href="{{ route('parent.register') }}" class="rts-btn btn-primary with-arrow">I want to hire</a>
                                         </div>
                                     </div>
                                 </div>
@@ -263,9 +263,9 @@
                                             New way to find people to do your jobs. If you are one of those thousands of people who struggle to find people to do Jobs or struggle to find jobs, this is for you.
                                         </p>
                                         <div class="button-area">
-                                            <a  type="button" href="{{ route('seller.register') }}" class="rts-btn btn-primary with-arrow">I want to work</a>
+                                            <a  type="button" href="{{ route('midwife.register') }}" class="rts-btn btn-primary with-arrow">I want to work</a>
                                             &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a type="button" href="{{ route('client.register') }}" class="rts-btn btn-primary with-arrow">I want to hire</a>
+                                            <a type="button" href="{{ route('parent.register') }}" class="rts-btn btn-primary with-arrow">I want to hire</a>
                                         </div>
                                     </div>
                                 </div>

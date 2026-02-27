@@ -14,19 +14,27 @@ class AddFieldsToAdminsTable extends Migration
     public function up()
     {
         Schema::table('admins', function (Blueprint $table) {
-            $table->string('designation')->nullable();
-            $table->text('contact_information')->nullable();
-            $table->string('registration_number')->nullable();
-            $table->unsignedBigInteger('division_id')->nullable(); // Assuming 'division_id' is a foreign key
-            $table->text('operational_jurisdiction')->nullable();
-            $table->timestamp('last_login')->nullable();
-            $table->enum('account_status', ['active', 'inactive', 'pending'])->default('pending');
-
-            //  Foreign key constraint (assuming there's a 'divisions' table)
-             $table->foreign('division_id')
-                   ->references('id')
-                   ->on('divisions') // Replace 'divisions' with the actual table name if different
-                   ->onDelete('SET NULL'); //  Set to null on deletion of the related division.  Choose appropriate action (cascade, restrict, etc.)
+            if (!Schema::hasColumn('admins', 'designation')) {
+                $table->string('designation')->nullable();
+            }
+            if (!Schema::hasColumn('admins', 'contact_information')) {
+                $table->text('contact_information')->nullable();
+            }
+            if (!Schema::hasColumn('admins', 'registration_number')) {
+                $table->string('registration_number')->nullable();
+            }
+            if (!Schema::hasColumn('admins', 'division_id')) {
+                $table->unsignedBigInteger('division_id')->nullable();
+            }
+            if (!Schema::hasColumn('admins', 'operational_jurisdiction')) {
+                $table->text('operational_jurisdiction')->nullable();
+            }
+            if (!Schema::hasColumn('admins', 'last_login')) {
+                $table->timestamp('last_login')->nullable();
+            }
+            if (!Schema::hasColumn('admins', 'account_status')) {
+                $table->enum('account_status', ['active', 'inactive', 'pending'])->default('pending');
+            }
         });
     }
 

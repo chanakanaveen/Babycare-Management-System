@@ -9,17 +9,17 @@ class FrontendController extends Controller
 {
     //home page
     public function homePage(){
-        $clientCount =  DB::table('clients')->count();
-        $sellersCount =  DB::table('sellers')->count();
-        $servicesCount =  DB::table('services')->count();
-        $servicseRequestCount =  DB::table('service_requests')->count();
+        $parentCount =  DB::table('parents')->count();
+        $midwivesCount =  DB::table('midwives')->count();
+        $babiesCount =  DB::table('baby')->count();
+        $vaccinationCount =  DB::table('baby_vaccinations')->count();
 
         $data = [
             'title' => 'Home Page',
-            'clients' =>$clientCount,
-            'sellers' =>$sellersCount,
-            'services' => $servicesCount,
-            'serviceRequests' => $servicseRequestCount
+            'clients' => $parentCount,
+            'sellers' => $midwivesCount,
+            'services' => $babiesCount,
+            'serviceRequests' => $vaccinationCount
         ];
         return view('front.layout.pages-layout',$data);
         // return view('example-frontend',$data);
