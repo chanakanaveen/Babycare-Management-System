@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Baby;
 use App\Models\WeightRecord;
 use App\Services\AiGrowthPredictionService;
+use App\Services\GrowthPredictionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
@@ -13,10 +14,12 @@ use Illuminate\Support\Carbon;
 class GrowthRecordController extends Controller
 {
     protected $aiService;
+    protected $growthPredictionService;
 
-    public function __construct(AiGrowthPredictionService $aiService)
+    public function __construct(AiGrowthPredictionService $aiService, GrowthPredictionService $growthPredictionService)
     {
         $this->aiService = $aiService;
+        $this->growthPredictionService = $growthPredictionService;
     }
 
     /**
@@ -256,15 +259,7 @@ class GrowthRecordController extends Controller
                     'date'       => $r->record_date,
                 ])->toArray();
 
-            $prediction = $this->aiService->predict([
-                'weight'             => $record->weight,
-                'height'             => $record->height,
-                'age_months'         => $record->age_months,
-                'milestones'         => $record->milestones,
-                'gender'             => $baby->gender,
-                'head_circumference' => $record->head_circumference,
-                'historical_records' => $historicalRecords,
-            ]);
+            $prediction = $this->growthPredictionService->generatePrediction($baby, $record);
 
             $record->ai_prediction = $prediction;
             $record->save();

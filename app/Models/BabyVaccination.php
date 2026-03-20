@@ -24,13 +24,17 @@ class BabyVaccination extends Model
         'vaccination_status',
         'scheduled_date',
         'reminder_sent',
+        'notification_sent_at',
+        'parent_notified',
     ];
 
     protected $casts = [
         'reminder_sent' => 'boolean',
+        'parent_notified' => 'boolean',
         'administered_date' => 'date',
         'scheduled_date' => 'date',
         'next_dose_date' => 'date',
+        'notification_sent_at' => 'datetime',
     ];
 
     public $timestamps = true;

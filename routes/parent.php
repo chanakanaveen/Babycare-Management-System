@@ -38,6 +38,33 @@ Route::prefix('parent')->name('parent.')->group(function () {
             Route::get('/height-report', 'heightReport')->name('height-report');
         });
 
+        // Notification routes
+        Route::prefix('notifications')->name('notification.')->group(function () {
+            Route::get('/', [App\Http\Controllers\NotificationController::class, 'index'])->name('index');
+            Route::post('/{id}/read', [App\Http\Controllers\NotificationController::class, 'markRead'])->name('mark-read');
+            Route::get('/unread-count', [App\Http\Controllers\NotificationController::class, 'unreadCount'])->name('unread-count');
+            Route::post('/mark-all-read', [App\Http\Controllers\NotificationController::class, 'markAllRead'])->name('mark-all-read');
+        });
+
+        // Appointment routes
+        Route::prefix('appointments')->name('appointment.')->group(function () {
+            Route::get('/', [App\Http\Controllers\ParentUser\AppointmentController::class, 'index'])->name('index');
+            Route::get('/book', [App\Http\Controllers\ParentUser\AppointmentController::class, 'create'])->name('create');
+            Route::post('/', [App\Http\Controllers\ParentUser\AppointmentController::class, 'store'])->name('store');
+            Route::get('/midwife-availability', [App\Http\Controllers\ParentUser\AppointmentController::class, 'getAvailability'])->name('availability');
+            Route::get('/{id}', [App\Http\Controllers\ParentUser\AppointmentController::class, 'show'])->name('show');
+            Route::delete('/{id}', [App\Http\Controllers\ParentUser\AppointmentController::class, 'destroy'])->name('destroy');
+        });
+
+        // Chat routes
+        Route::prefix('chat')->name('chat.')->group(function () {
+            Route::get('/', [App\Http\Controllers\ChatController::class, 'index'])->name('index');
+            Route::get('/{chatRoomId}', [App\Http\Controllers\ChatController::class, 'show'])->name('show')->middleware('chat.confirmed');
+            Route::get('/{chatRoomId}/messages', [App\Http\Controllers\ChatController::class, 'getMessages'])->name('messages');
+            Route::post('/{chatRoomId}/send', [App\Http\Controllers\ChatController::class, 'sendMessage'])->name('send');
+            Route::post('/{chatRoomId}/mark-read', [App\Http\Controllers\ChatController::class, 'markRead'])->name('mark-read');
+        });
+
         // Growth Record routes (parent can view their baby's growth records)
         Route::prefix('growth-records')->name('growth-record.')->group(function () {
             Route::get('/{babyId}', [GrowthRecordController::class, 'index'])->name('index');

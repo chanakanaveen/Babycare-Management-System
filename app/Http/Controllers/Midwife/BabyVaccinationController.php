@@ -7,11 +7,18 @@ use App\Models\Baby;
 use App\Models\BabyVaccination;
 use App\Models\VaccinationSchedule;
 use App\Models\Midwife;
+use App\Services\NotificationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class BabyVaccinationController extends Controller
 {
+    protected $notificationService;
+
+    public function __construct(NotificationService $notificationService)
+    {
+        $this->notificationService = $notificationService;
+    }
     /**
      * List all vaccinations for a specific baby assigned to the authenticated midwife.
      */
@@ -105,6 +112,11 @@ class BabyVaccinationController extends Controller
                 'reminder_sent'       => false,
             ]);
 
+            // Trigger parent notification
+            if ($vaccination->vaccination_status === 'scheduled' && $vaccination->scheduled_date) {
+                $this->notificationService->notifyParentVaccineScheduled($vaccination);
+            }
+
             if ($request->expectsJson() || $request->ajax()) {
                 return response()->json([
                     'status' => 1,
@@ -169,6 +181,11 @@ class BabyVaccinationController extends Controller
                 'midwife_id'         => $midwifeId,
                 'notes'              => $request->notes ?? $vaccination->notes,
             ]);
+
+            // Re-trigger notification if rescheduled
+            if ($request->vaccination_status === 'scheduled' && $vaccination->scheduled_date && !$vaccination->parent_notified) {
+                $this->notificationService->notifyParentVaccineScheduled($vaccination->fresh());
+            }
 
             if ($request->expectsJson() || $request->ajax()) {
                 return response()->json([

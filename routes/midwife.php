@@ -44,11 +44,61 @@ Route::prefix('midwife')->name('midwife.')->group(function () {
             Route::get('/notice', 'notice')->name('notice');
         });
 
+        // Notification routes
+        Route::prefix('notifications')->name('notification.')->group(function () {
+            Route::get('/', [App\Http\Controllers\NotificationController::class, 'index'])->name('index');
+            Route::post('/{id}/read', [App\Http\Controllers\NotificationController::class, 'markRead'])->name('mark-read');
+            Route::get('/unread-count', [App\Http\Controllers\NotificationController::class, 'unreadCount'])->name('unread-count');
+            Route::post('/mark-all-read', [App\Http\Controllers\NotificationController::class, 'markAllRead'])->name('mark-all-read');
+        });
+
+        // Appointment routes
+        Route::prefix('appointments')->name('appointment.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Midwife\AppointmentController::class, 'index'])->name('index');
+            Route::get('/{id}', [App\Http\Controllers\Midwife\AppointmentController::class, 'show'])->name('show');
+            Route::post('/{id}/confirm', [App\Http\Controllers\Midwife\AppointmentController::class, 'confirm'])->name('confirm');
+            Route::post('/{id}/reject', [App\Http\Controllers\Midwife\AppointmentController::class, 'reject'])->name('reject');
+            Route::post('/{id}/complete', [App\Http\Controllers\Midwife\AppointmentController::class, 'complete'])->name('complete');
+        });
+
+        // Availability routes
+        Route::get('/availability', [App\Http\Controllers\Midwife\AppointmentController::class, 'editAvailability'])->name('availability');
+        Route::post('/availability', [App\Http\Controllers\Midwife\AppointmentController::class, 'saveAvailability'])->name('availability.save');
+
+        // Chat routes
+        Route::prefix('chat')->name('chat.')->group(function () {
+            Route::get('/', [App\Http\Controllers\ChatController::class, 'index'])->name('index');
+            Route::get('/{chatRoomId}', [App\Http\Controllers\ChatController::class, 'show'])->name('show')->middleware('chat.confirmed');
+            Route::get('/{chatRoomId}/messages', [App\Http\Controllers\ChatController::class, 'getMessages'])->name('messages');
+            Route::post('/{chatRoomId}/send', [App\Http\Controllers\ChatController::class, 'sendMessage'])->name('send');
+            Route::post('/{chatRoomId}/mark-read', [App\Http\Controllers\ChatController::class, 'markRead'])->name('mark-read');
+        });
+
         // Baby Vaccination routes (midwife manages vaccinations for assigned babies)
         Route::prefix('baby-vaccinations')->name('baby-vaccination.')->group(function () {
             Route::get('/{babyId}', [BabyVaccinationController::class, 'index'])->name('index');
             Route::post('/', [BabyVaccinationController::class, 'schedule'])->name('schedule');
             Route::put('/{recordId}', [BabyVaccinationController::class, 'update'])->name('update');
         });
+
+        // Growth prediction route for midwife
+        Route::post('/growth-records/{recordId}/predict', function (\Illuminate\Http\Request $request, $recordId) {
+            $midwifeId = \Illuminate\Support\Facades\Auth::guard('midwife')->id();
+            $record = \App\Models\WeightRecord::where('record_id', $recordId)->firstOrFail();
+            $baby = \App\Models\Baby::where('baby_id', $record->baby_id)
+                        ->where('midwife_id', $midwifeId)->firstOrFail();
+
+            $service = new \App\Services\GrowthPredictionService();
+            $prediction = $service->generatePrediction($baby, $record);
+
+            $record->ai_prediction = $prediction;
+            $record->save();
+
+            return response()->json([
+                'status' => 1,
+                'msg' => 'AI prediction generated successfully.',
+                'prediction' => $prediction,
+            ]);
+        })->name('growth-prediction.generate');
     });
 });

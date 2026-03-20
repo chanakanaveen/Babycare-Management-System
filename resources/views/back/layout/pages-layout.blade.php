@@ -177,91 +177,15 @@
 						</a>
 					</div>
 				</div>
-				<div class="user-notification">
-					<div class="dropdown">
-						<a
-							class="dropdown-toggle no-arrow"
-							href="#"
-							role="button"
-							data-toggle="dropdown"
-						>
-							<i class="icon-copy dw dw-notification"></i>
-							<span class="badge notification-active"></span>
-						</a>
-						<div class="dropdown-menu dropdown-menu-right">
-							<div class="notification-list mx-h-350 customscroll">
-								<ul>
-									<li>
-										<a href="#">
-											<img src="/back/vendors/images/img.jpg" alt="" />
-											<h3>John Doe</h3>
-											<p>
-												Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit, sed...
-											</p>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<img src="/back/vendors/images/photo1.jpg" alt="" />
-											<h3>Lea R. Frith</h3>
-											<p>
-												Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit, sed...
-											</p>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<img src="/back/vendors/images/photo2.jpg" alt="" />
-											<h3>Erik L. Richards</h3>
-											<p>
-												Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit, sed...
-											</p>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<img src="/back/vendors/images/photo3.jpg" alt="" />
-											<h3>John Doe</h3>
-											<p>
-												Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit, sed...
-											</p>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<img src="/back/vendors/images/photo4.jpg" alt="" />
-											<h3>Renee I. Hansen</h3>
-											<p>
-												Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit, sed...
-											</p>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<img src="/back/vendors/images/img.jpg" alt="" />
-											<h3>Vicki M. Coleman</h3>
-											<p>
-												Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit, sed...
-											</p>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
+				@include('partials.notification-bell')
 
                 {{-- <livewire::admin-seller-header-profile /> --}}
                 @livewire('admin-seller-header-profile')
 
 			</div>
 		</div>
+
+		@include('partials.notification-banner')
 
 		<div class="right-sidebar">
 			<div class="sidebar-title">
@@ -547,6 +471,20 @@
 						</li>
 
 
+                        <li>
+							<a href="{{ route('midwife.appointment.index') }}" class="dropdown-toggle no-arrow {{ Route::is('midwife.appointment.*') ? 'active' : '' }}">
+								<span class="micon fa fa-calendar-check"></span>
+								<span class="mtext">Appointments</span>
+							</a>
+						</li>
+
+                        <li>
+							<a href="{{ route('midwife.chat.index') }}" class="dropdown-toggle no-arrow {{ Route::is('midwife.chat.*') ? 'active' : '' }}">
+								<span class="micon fa fa-comments"></span>
+								<span class="mtext">Chat</span>
+							</a>
+						</li>
+
 						<li>
 							<a
 								href="{{ route('midwife.profile') }}"
@@ -606,6 +544,20 @@
                                     ><span class="mtext">Notices</span>
                                 </a>
                             </li> --}}
+
+                            <li>
+                                <a href="{{ route('parent.appointment.index') }}" class="dropdown-toggle no-arrow {{ Route::is('parent.appointment.*') ? 'active' : '' }}">
+                                    <span class="micon fa fa-calendar-check"></span>
+                                    <span class="mtext">Appointments</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('parent.chat.index') }}" class="dropdown-toggle no-arrow {{ Route::is('parent.chat.*') ? 'active' : '' }}">
+                                    <span class="micon fa fa-comments"></span>
+                                    <span class="mtext">Chat</span>
+                                </a>
+                            </li>
 
                             <li>
                                 <a
