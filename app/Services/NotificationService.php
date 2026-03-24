@@ -8,9 +8,17 @@ use App\Models\BabyVaccination;
 use App\Models\Notification;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
+use App\Services\SmsService;
 
 class NotificationService
 {
+    protected $smsService;
+
+    public function __construct(SmsService $smsService)
+    {
+        $this->smsService = $smsService;
+    }
+
     /**
      * Notify a parent that a vaccination has been scheduled for their baby.
      */
@@ -61,6 +69,21 @@ class NotificationService
                 $record->scheduled_date->format('M d, Y'),
                 $midwife->name
             );
+
+            // Send SMS notification
+            if ($parent->phone) {
+                try {
+                    $this->smsService->sendVaccineScheduledSms(
+                        $parent->phone,
+                        $baby->full_name,
+                        $vaccine->vaccine_name,
+                        $record->scheduled_date->format('M d, Y'),
+                        $midwife->name
+                    );
+                } catch (\Exception $e) {
+                    Log::error('NotificationService: Failed to send SMS', ['error' => $e->getMessage()]);
+                }
+            }
 
             // Broadcast (will be logged if BROADCAST_DRIVER=log)
             try {

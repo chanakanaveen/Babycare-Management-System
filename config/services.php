@@ -36,4 +36,11 @@ return [
         'endpoint' => env('GEMINI_ENDPOINT', 'https://generativelanguage.googleapis.com/v1beta'),
     ],
 
+    'mobitel_esms' => [
+        'username' => env('MOBITEL_ESMS_USERNAME'),
+        'password' => env('MOBITEL_ESMS_PASSWORD'),
+        'alias'    => env('MOBITEL_ESMS_ALIAS'),
+        'wsdl'     => 'https://msmsenterpriseapi.mobitel.lk/mSMSEnterpriseAPI/mSMSEnterpriseAPI.wsdl',
+    ],
+
 ];
