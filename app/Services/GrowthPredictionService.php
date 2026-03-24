@@ -126,28 +126,14 @@ Current Measurements:
 
 Please respond ONLY with a valid JSON object (no markdown, no code fences, no explanation outside the JSON) with the following structure:
 {
+    "bmi_status": "BMI category for age (e.g., 'Normal', 'Underweight', 'Overweight')",
     "growth_status": "One of: 'Normal', 'Above Average', 'Below Average', 'At Risk', 'Critical'",
-    "overall_summary": "A 2-3 sentence narrative summary of the child's growth and health status, written for parents to understand",
-    "weight_analysis": {
-        "status": "One of: 'Normal', 'Underweight', 'Overweight'",
-        "percentile": "Estimated WHO percentile (e.g., '50th percentile')",
-        "detail": "Brief explanation"
-    },
-    "height_analysis": {
-        "status": "One of: 'Normal', 'Short', 'Tall'",
-        "percentile": "Estimated WHO percentile",
-        "detail": "Brief explanation"
-    },
-    "bmi_category": "BMI category for age (e.g., 'Normal', 'Underweight', 'Overweight')",
-    "growth_trend": "Description of the growth trajectory based on history",
-    "predictions": {
-        "next_month_weight": "Predicted weight in kg for next month",
-        "next_month_height": "Predicted height in cm for next month",
-        "growth_velocity": "Description of growth speed"
-    },
+    "next_checkup_weight": "Predicted weight in kg for next month (number only, e.g. 8.5)",
     "recommendations": ["Array of 3-5 actionable recommendations"],
-    "red_flags": ["Array of any concerning signs, empty array if none"],
-    "follow_up_urgency": "One of: 'Routine', 'Soon', 'Urgent'"
+    "concerns": ["Array of any concerning signs, empty array if none"],
+    "milestone_expectations": "A brief summary of what milestones to expect next based on current age",
+    "overall_summary": "A 2-3 sentence narrative summary of the child's growth and health status",
+    "growth_trend": "Description of the growth trajectory based on history"
 }
 PROMPT;
     }
@@ -165,16 +151,14 @@ PROMPT;
 
         if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
             return [
-                'growth_status'    => $decoded['growth_status'] ?? 'Normal',
-                'overall_summary'  => $decoded['overall_summary'] ?? 'Unable to generate summary.',
-                'weight_analysis'  => $decoded['weight_analysis'] ?? ['status' => 'N/A', 'percentile' => 'N/A', 'detail' => ''],
-                'height_analysis'  => $decoded['height_analysis'] ?? ['status' => 'N/A', 'percentile' => 'N/A', 'detail' => ''],
-                'bmi_category'     => $decoded['bmi_category'] ?? 'N/A',
-                'growth_trend'     => $decoded['growth_trend'] ?? 'Unable to determine',
-                'predictions'      => $decoded['predictions'] ?? [],
-                'recommendations'  => $decoded['recommendations'] ?? [],
-                'red_flags'        => $decoded['red_flags'] ?? [],
-                'follow_up_urgency'=> $decoded['follow_up_urgency'] ?? 'Routine',
+                'bmi_status'           => $decoded['bmi_status'] ?? 'N/A',
+                'growth_status'        => $decoded['growth_status'] ?? 'Normal',
+                'next_checkup_weight'  => $decoded['next_checkup_weight'] ?? null,
+                'recommendations'      => $decoded['recommendations'] ?? [],
+                'concerns'             => $decoded['concerns'] ?? [],
+                'milestone_expectations'=> $decoded['milestone_expectations'] ?? null,
+                'overall_summary'      => $decoded['overall_summary'] ?? 'Unable to generate summary.',
+                'growth_trend'         => $decoded['growth_trend'] ?? 'Unable to determine',
             ];
         }
 

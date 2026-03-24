@@ -81,6 +81,12 @@ Route::prefix('midwife')->name('midwife.')->group(function () {
             Route::put('/{recordId}', [BabyVaccinationController::class, 'update'])->name('update');
         });
 
+        // Bulk Vaccination routes
+        Route::prefix('bulk-vaccinations')->name('bulk-vaccination.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Midwife\BulkVaccinationController::class, 'create'])->name('create');
+            Route::post('/', [\App\Http\Controllers\Midwife\BulkVaccinationController::class, 'store'])->name('store');
+        });
+
         // Growth prediction route for midwife
         Route::post('/growth-records/{recordId}/predict', function (\Illuminate\Http\Request $request, $recordId) {
             $midwifeId = \Illuminate\Support\Facades\Auth::guard('midwife')->id();

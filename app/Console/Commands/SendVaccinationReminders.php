@@ -58,7 +58,7 @@ class SendVaccinationReminders extends Command
                 continue;
             }
 
-            $babyName    = $baby->name ?? 'Unknown Baby';
+            $babyName    = $baby->full_name ?? 'Unknown Baby';
             $vaccineName = $vaccine->vaccine_name ?? 'Unknown Vaccine';
 
             $notification = new VaccinationReminderNotification(

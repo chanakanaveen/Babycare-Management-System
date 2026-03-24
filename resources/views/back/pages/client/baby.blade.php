@@ -1,11 +1,11 @@
 @extends('back.layout.pages-layout')
-@section('pagetitle', isset($pageTitle) ? $pageTitle : 'Babays')
+@section('pagetitle', isset($pageTitle) ? $pageTitle : 'Babies')
 @section('content')
 <div class="col-md-12">
     <div class="pd-20 card-box mb-30">
         <div class="clearfix">
             <div class="pull-left">
-                <h4 class="h4 text-blue">My Babys Details</h4>
+                <h4 class="h4 text-blue">My Baby Details</h4>
             </div>
             {{-- <div class="pull-right">
                 <button class="btn btn-primary btn-sm" id="addbaby" name="addbaby" type="button" data-bs-toggle="modal" >
@@ -16,14 +16,14 @@
         </div>
         <div class="table-responsive mt-4">
             <table class="table table-borderless table-striped">
-                <thead class="bg-secondary text-white">
+                <thead class="bg-primary text-white">
                     <tr>
                         <th>Name</th>
-                        <th>Dath of Birth</th>
+                        <th>Date of Birth</th>
                         <th>Gender</th>
                         <th>Blood Group</th>
-                        <th>Birdth Hospital</th>
-                        <th>Birdth Weight</th>
+                        <th>Birth Hospital</th>
+                        <th>Birth Weight</th>
                         <th>Parent's Name</th>
                         <th>BMI</th>
                         {{-- <th>Action</th> --}}

@@ -35,6 +35,7 @@
     </div>
 </div>
 
+@push('scripts')
 <script>
 (function() {
     var guardType = '{{ $guardType }}';
@@ -151,4 +152,5 @@
     setInterval(fetchUnreadCount, 30000);
 })();
 </script>
+@endpush
 @endif

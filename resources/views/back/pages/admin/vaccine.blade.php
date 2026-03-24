@@ -21,7 +21,7 @@
         </div>
         <div class="table-responsive mt-4">
             <table class="table table-borderless table-striped">
-                <thead class="bg-secondary text-white">
+                <thead class="bg-primary text-white">
                     <tr>
                         <th>Name</th>
                         <th>Description</th>

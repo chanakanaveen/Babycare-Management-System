@@ -41,7 +41,7 @@ class MidwifeController extends Controller
     public function home(Request $request){
         $midwife = null;
         if( Auth::guard('midwife')->check() ){
-            $midwife = Midwife::findOrFail(auth()->id());
+            $midwife = Midwife::findOrFail(auth('midwife')->id());
         }
 
         $parentCount  = DB::table('parents')->count();
@@ -163,7 +163,7 @@ class MidwifeController extends Controller
     //change profile picture
     public function changeProfilePicture(Request $request){
         try {
-            $midwife = Midwife::findOrFail(auth()->id());
+            $midwife = Midwife::findOrFail(auth('midwife')->id());
             $path = 'images/users/sellers/';
 
             if($request->hasFile('sellerProfilePictureFile')){
@@ -202,7 +202,7 @@ class MidwifeController extends Controller
             'division'=>'required',
         ]);
 
-        $midwife = Midwife::findOrFail(auth()->id());
+        $midwife = Midwife::findOrFail(auth('midwife')->id());
         $midwife->name = $request->name;
         $midwife->phone = $request->phone;
         $midwife->address = $request->address;
@@ -227,7 +227,7 @@ class MidwifeController extends Controller
     public function profileView(Request $request){
         $midwife = null;
         if( Auth::guard('midwife')->check() ){
-            $midwife = Midwife::findOrFail(auth()->id());
+            $midwife = Midwife::findOrFail(auth('midwife')->id());
         }
         $provinces = DB::table('provinces')->get();
         $districts = DB::table('districts')->get();
@@ -261,7 +261,7 @@ class MidwifeController extends Controller
             'service3' => 'required',
         ]);
 
-        $midwife = Midwife::findOrFail(auth()->id());
+        $midwife = Midwife::findOrFail(auth('midwife')->id());
         $midwife->name = $request->name;
         $midwife->email = $request->email;
         $midwife->username = $request->username;
@@ -286,7 +286,7 @@ class MidwifeController extends Controller
     public function job(Request $request){
         $midwife = null;
         if( Auth::guard('midwife')->check() ){
-            $midwife = Midwife::findOrFail(auth()->id());
+            $midwife = Midwife::findOrFail(auth('midwife')->id());
         }
         $data = [
             'pageTitle'=>'Upload Certificate',
@@ -302,7 +302,7 @@ class MidwifeController extends Controller
             'Certificate' => 'image|mimes:jpg,jpeg,png'
         ]);
 
-        $midwife = Midwife::findOrFail(auth()->id());
+        $midwife = Midwife::findOrFail(auth('midwife')->id());
         $midwife->About_Field = $request->comment;
         $midwife->status = "2";
 
@@ -350,7 +350,7 @@ class MidwifeController extends Controller
 
         $midwifedetails = null;
         if( Auth::guard('midwife')->check() ){
-            $midwifedetails = Midwife::findOrFail(auth()->id());
+            $midwifedetails = Midwife::findOrFail(auth('midwife')->id());
         }
 
         $data = [
@@ -522,7 +522,7 @@ class MidwifeController extends Controller
             'new_password_confirmation' => 'required'
         ]);
 
-        $midwife = Midwife::findOrFail(auth()->id());
+        $midwife = Midwife::findOrFail(auth('midwife')->id());
 
         if(Hash::check($request->current_password, $midwife->password)){
             $midwife->update(['password'=>Hash::make($request->new_password)]);

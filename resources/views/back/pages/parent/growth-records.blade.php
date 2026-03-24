@@ -31,7 +31,7 @@
         {{-- Records Table --}}
         <div class="table-responsive mt-3">
             <table class="table table-borderless table-striped">
-                <thead class="bg-secondary text-white">
+                <thead class="bg-primary text-white">
                     <tr>
                         <th>#</th>
                         <th>Date</th>

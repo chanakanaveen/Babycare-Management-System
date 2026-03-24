@@ -30,7 +30,7 @@ class AiGrowthPredictionService
      */
     public function predict(array $growthData): array
     {
-        $apiKey = env('GEMINI_API_KEY');
+        $apiKey = config('services.gemini.api_key');
 
         // If no API key configured, return mock prediction
         if (empty($apiKey)) {
@@ -66,6 +66,7 @@ class AiGrowthPredictionService
                     $parsed = $this->parseAiResponse($text);
                     if ($parsed) {
                         $parsed['source'] = 'gemini_ai';
+                        // Map AI response to view keys if necessary (AiGrowthPredictionService already uses some matching keys)
                         return $parsed;
                     }
                 }
@@ -144,13 +145,14 @@ PROMPT;
         $decoded = json_decode($text, true);
 
         if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
-            // Ensure all expected keys exist with defaults
+            // Ensure all expected keys exist with defaults for the view
             return [
-                'growth_trend'       => $decoded['growth_trend'] ?? 'Unable to determine',
-                'percentile_estimate'=> $decoded['percentile_estimate'] ?? 'Unable to determine',
-                'health_risks'       => $decoded['health_risks'] ?? [],
-                'recommendations'    => $decoded['recommendations'] ?? [],
-                'bmi_category'       => $decoded['bmi_category'] ?? 'Unable to determine',
+                'bmi_status'           => $decoded['bmi_status'] ?? $decoded['bmi_category'] ?? 'Unable to determine',
+                'growth_status'        => $decoded['growth_status'] ?? $decoded['growth_trend'] ?? 'Unable to determine',
+                'concerns'             => $decoded['concerns'] ?? $decoded['health_risks'] ?? [],
+                'recommendations'      => $decoded['recommendations'] ?? [],
+                'next_checkup_weight'  => $decoded['next_checkup_weight'] ?? null,
+                'milestone_expectations'=> $decoded['milestone_expectations'] ?? null,
             ];
         }
 
@@ -180,19 +182,19 @@ PROMPT;
         }
 
         return [
-            'growth_trend'        => 'Normal growth pattern observed based on available data.',
-            'percentile_estimate' => '25th-75th percentile (estimated)',
-            'health_risks'        => [
+            'bmi_status'     => $bmiCategory,
+            'growth_status'  => 'Normal growth pattern',
+            'concerns'       => [
                 'No immediate health risks identified based on provided data.',
                 'Continue regular health check-ups for ongoing monitoring.',
             ],
-            'recommendations'     => [
+            'recommendations' => [
                 'Maintain a balanced diet appropriate for the child\'s age.',
                 'Ensure regular physical activity and outdoor play.',
                 'Follow the recommended vaccination schedule.',
                 'Schedule the next growth assessment in 1-2 months.',
             ],
-            'bmi_category'        => $bmiCategory,
+            'next_checkup_weight' => null,
             'source'              => 'mock_prediction',
         ];
     }

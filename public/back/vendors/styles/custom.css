@@ -1,0 +1,88 @@
+/* Custom Styles for Babycare Management System */
+
+/* Global Typography & Spacing */
+body {
+    font-family: 'Inter', sans-serif;
+    color: #333;
+}
+
+/* Header Enhancements */
+.header {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.header-left .header-search .search-input {
+    border-radius: 20px;
+    padding-left: 45px;
+    background: #f1f3f5;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.header-left .header-search .search-input:focus {
+    background: #fff;
+    border-color: #1b00ff;
+    box-shadow: 0 0 0 0.2rem rgba(27, 0, 255, 0.1);
+}
+
+.header-left .header-search .search-icon {
+    left: 20px;
+    color: #adb5bd;
+}
+
+/* Sidebar Improvements */
+.left-side-bar {
+    background: #1a237e; /* Deeper blue for more premium feel */
+}
+
+.sidebar-menu .dropdown-toggle {
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+.sidebar-menu .dropdown-toggle:hover, 
+.sidebar-menu .show > .dropdown-toggle,
+.sidebar-menu > ul > li > .dropdown-toggle.active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-menu .submenu li a:hover,
+.sidebar-menu .submenu li a.active {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+/* Table Enhancements */
+.table-responsive {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.table thead th {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    border-top: none;
+    padding: 1.25rem 1rem;
+}
+
+.table tbody td {
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+.bg-primary {
+    background-color: #1b00ff !important;
+}
+
+/* Animations */
+.dropdown-menu {
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

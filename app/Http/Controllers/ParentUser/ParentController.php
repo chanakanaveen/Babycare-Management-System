@@ -46,7 +46,7 @@ class ParentController extends Controller
         $babys = DB::table('baby as a')->selectRaw('a.*, b.name as midwifename, c.name as parentname')
             ->leftJoin('midwives as b', 'b.id', '=', 'a.midwife_id')
             ->leftJoin('parents as c', 'c.id', '=', 'a.parent_id')
-            ->where('a.parent_id', auth()->id())
+            ->where('a.parent_id', auth('parent')->id())
             ->get();
 
         $midwife = DB::table('midwives as a')->get();
@@ -162,7 +162,7 @@ class ParentController extends Controller
             'cities'=>'required',
         ]);
 
-        $parent = ParentUser::find(auth()->id());
+        $parent = ParentUser::find(auth('parent')->id());
         $parent->name = $request->name;
         $parent->phone = $request->phone;
         $parent->address = $request->address;
@@ -182,7 +182,7 @@ class ParentController extends Controller
     //change profile picture
     public function changeProfilePicture(Request $request){
         try {
-            $parent = ParentUser::findOrFail(auth()->id());
+            $parent = ParentUser::findOrFail(auth('parent')->id());
             $path = 'images/users/clients/';
 
             if($request->hasFile('clientProfilePictureFile')){
@@ -213,7 +213,7 @@ class ParentController extends Controller
     public function profileView(Request $request){
         $parent = null;
         if( Auth::guard('parent')->check() ){
-            $parent = ParentUser::findOrFail(auth()->id());
+            $parent = ParentUser::findOrFail(auth('parent')->id());
         }
         $provinces = DB::table('provinces')->get();
         $districts = DB::table('districts')->get();
@@ -243,7 +243,7 @@ class ParentController extends Controller
             'cities' => 'required',
         ]);
 
-        $parent = ParentUser::findOrFail(auth()->id());
+        $parent = ParentUser::findOrFail(auth('parent')->id());
         $parent->name = $request->name;
         $parent->email = $request->email;
         $parent->username = $request->username;
@@ -266,7 +266,7 @@ class ParentController extends Controller
         $babys = DB::table('baby as a')->selectRaw('a.*, b.name as midwifename, c.name as parentname')
             ->leftJoin('midwives as b', 'b.id', '=', 'a.midwife_id')
             ->leftJoin('parents as c', 'c.id', '=', 'a.parent_id')
-            ->where('a.parent_id', auth()->id())
+            ->where('a.parent_id', auth('parent')->id())
             ->get();
 
         $parents = DB::table('parents as a')->get();
@@ -290,7 +290,7 @@ class ParentController extends Controller
             ->leftJoin('cities as d','d.id', '=' ,'a.cities')
             ->get();
 
-        $babies = Baby::where('parent_id', auth()->id())->get();
+        $babies = Baby::where('parent_id', auth('parent')->id())->get();
 
         $data = [
             'pageTitle'=>'Report',
@@ -307,7 +307,7 @@ class ParentController extends Controller
             ->leftJoin('cities as d','d.id', '=' ,'a.cities')
             ->get();
 
-        $babies = Baby::where('parent_id', auth()->id())->get();
+        $babies = Baby::where('parent_id', auth('parent')->id())->get();
 
         $data = [
             'pageTitle'=>'Height Report',
@@ -340,7 +340,7 @@ class ParentController extends Controller
             'new_password_confirmation' => 'required'
         ]);
 
-        $parent = ParentUser::findOrFail(auth()->id());
+        $parent = ParentUser::findOrFail(auth('parent')->id());
 
         if(Hash::check($request->current_password, $parent->password)){
             $parent->update(['password'=>Hash::make($request->new_password)]);

@@ -16,13 +16,13 @@
         </div>
         <div class="table-responsive mt-4">
             <table class="table table-borderless table-striped">
-                <thead class="bg-secondary text-white">
+                <thead class="bg-primary text-white">
                     <tr>
                         <th>Name</th>
-                        <th>Devision</th>
+                        <th>Division</th>
                         <th>Phone Number</th>
                         <th>City</th>
-                        <th>Baby count</th>
+                        <th>Baby Count</th>
                         <th>Status</th>
                     </tr>
                 </thead>
