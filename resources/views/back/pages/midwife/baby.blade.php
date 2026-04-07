@@ -61,7 +61,7 @@
                             <div class="input-group-btn" id="" >
                                 <div type="button" name="update" id="update" class="btn btn-primary btn-sm update-baby" data-id="{{ $row->baby_id }}">Update</div>
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                         Vaccinations
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right">

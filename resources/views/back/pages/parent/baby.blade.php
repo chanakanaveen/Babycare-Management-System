@@ -27,6 +27,7 @@
                         <th>Parent's Name</th>
                         <th>BMI</th>
                         <th>Growth Records</th>
+                        <th>Action</th>
 
                     </tr>
                 </thead>
@@ -61,6 +62,18 @@
                             <a href="{{ route('parent.growth-record.index', $row->baby_id) }}" class="btn btn-primary btn-sm">
                                 <i class="fa fa-robot"></i> Growth Records
                             </a>
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Actions
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="{{ route('parent.baby-vaccination.index', $row->baby_id) }}">
+                                        <i class="fa fa-syringe"></i> View Vaccination Schedule
+                                    </a>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     @empty
