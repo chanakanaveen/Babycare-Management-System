@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ParentUser\ParentController;
 use App\Http\Controllers\ParentUser\GrowthRecordController;
+use App\Http\Controllers\ParentUser\BabyVaccinationController;
 
 Route::prefix('parent')->name('parent.')->group(function () {
 
@@ -63,6 +64,11 @@ Route::prefix('parent')->name('parent.')->group(function () {
             Route::get('/{chatRoomId}/messages', [App\Http\Controllers\ChatController::class, 'getMessages'])->name('messages');
             Route::post('/{chatRoomId}/send', [App\Http\Controllers\ChatController::class, 'sendMessage'])->name('send');
             Route::post('/{chatRoomId}/mark-read', [App\Http\Controllers\ChatController::class, 'markRead'])->name('mark-read');
+        });
+
+        // Baby Vaccination routes (parent can view vaccination schedules for their babies)
+        Route::prefix('baby-vaccinations')->name('baby-vaccination.')->group(function () {
+            Route::get('/{babyId}', [BabyVaccinationController::class, 'index'])->name('index');
         });
 
         // Growth Record routes (parent can view their baby's growth records)
